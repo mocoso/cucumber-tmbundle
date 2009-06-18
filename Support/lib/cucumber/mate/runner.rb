@@ -46,6 +46,7 @@ module Cucumber
         else
           command = cucumber_cmd
           argv << "#{@file.feature_file_path}#{@filename_opts}"
+          argv << "-r #{@file.base_feature_directory_path}"
           argv << @cucumber_opts
         end
         in_project_dir do

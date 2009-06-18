@@ -14,6 +14,20 @@ module Cucumber
 
         end
 
+        # Path of feature directory containing this file
+        #
+        # Usually this is the file's directory but in the case that features
+        # are nested this walks back up the directory tree until it finds a
+        # directory called features.
+        def base_feature_directory_path
+          parts = File.dirname(full_file_path).split(File::SEPARATOR)
+          if index = parts.rindex('features')
+            File.join(parts[0, index + 1])
+          else
+            File.join(parts)
+          end
+        end
+
         def feature_file?; true; end
 
         def alternate_file_path
